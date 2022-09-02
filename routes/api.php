@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/hello', function(){
     return "Hello World";
+});
+
+Route::get('/todo', function(){
+    return Todo::all();
+});
+
+Route::post('/todo', function() {
+    return Todo::create([
+        'activity' => 'coding',
+    ]);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
