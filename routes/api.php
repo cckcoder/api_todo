@@ -23,8 +23,12 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+
 Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::resource('todo', TodoController::class);
+    Route::get('todo/search/{activity}', [TodoController::class, 'search']);
+    Route::get('todo/search_by_complete/{is_complete}', [TodoController::class, 'search_is_completed']);
+
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

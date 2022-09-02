@@ -75,4 +75,14 @@ class TodoController extends Controller
     {
         return Todo::destroy($id);
     }
+
+    public function search($activity)
+    {
+        return Todo::where('activity', 'like', "%{$activity}%")->get();
+    }
+
+    public function search_is_completed($is_complete)
+    {
+        return Todo::where('is_complete', $is_complete)->get();
+    }
 }
