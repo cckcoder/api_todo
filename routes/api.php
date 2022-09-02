@@ -19,12 +19,14 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/todo', [TodoController::class, 'index']);
 // Route::post('/todo', [TodoController::class, 'store']);
 
-Route::resource('todo', TodoController::class);
-
+// Public
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
 
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::resource('todo', TodoController::class);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
