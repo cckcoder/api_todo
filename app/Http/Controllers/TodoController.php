@@ -40,7 +40,15 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+        $todo = Todo::find($id);
+        if ($todo) 
+        {
+            return $todo;
+        } 
+        else 
+        {
+            return response(['message' => 'Item not found'], 404);
+        }
     }
 
     /**
@@ -52,7 +60,9 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $todo = Todo::find($id);
+        $todo->update($request->all());
+        return $todo;
     }
 
     /**
@@ -63,6 +73,6 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Todo::destroy($id);
     }
 }

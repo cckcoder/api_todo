@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/todo', [TodoController::class, 'index']);
-Route::post('/todo', [TodoController::class, 'store']);
+// Route::get('/todo', [TodoController::class, 'index']);
+// Route::post('/todo', [TodoController::class, 'store']);
+
+Route::resource('todo', TodoController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
